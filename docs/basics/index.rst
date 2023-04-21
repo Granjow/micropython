@@ -43,6 +43,14 @@ class ABC:
         pass
 ```
 
+Then make sure that MicroPython also finds the mock by modifying the path list where MicroPython looks for the .py files.
+
+```python
+import sys
+
+sys.path.append('.')
+```
+
 If you use host specific features or too much resources, the program should probably remain on the host.
 
 So, can I run MicroPython programs on my PC?
@@ -57,7 +65,18 @@ It will not run if …
 But I want to test my Microcontroller code on my PC!
 ---
 
-Fear not!
+Fear not! Patterns like dependency inversion are here for the rescue.
+
+Assume code which reads a value from a UART device to decide whether to turn a lamp on or off.
+
+```python
+class AlarmClock:
+  def __init__(self):
+    uart = UART(1)
+    io = machine.Pin(10, machine.Pin.OUTPUT)
+if uart.read() == "sleeping":
+  io.write(True)
+```
 
 
 * Performance
