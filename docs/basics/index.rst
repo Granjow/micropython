@@ -1,6 +1,17 @@
 MicroPython Basics
 ==================
 
+How do I upload code to the Microcontroller?
+---
+
+The first step is flashing MicroPython firmware to the Microcontroller. The firmware contains the functionality for the REPL (read-eval-print loop), for the file system, and for running `.py` files.
+
+Depending on the board, there are different options for uploading code.
+
+* Boards with USB support show up as flash storage. You can then copy `.py` files directly to this storage.
+* For other boards, like the ESP32, `mpremote` is used to upload files, to open a REPL, etc.
+* Code can also be included as *frozen bytecode* in a custom firmware build.
+
 What is the difference between MicroPython and Python?
 ---
 
